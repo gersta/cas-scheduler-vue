@@ -1,6 +1,8 @@
 <template>
-  
-  <LectureList msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="max-w-md mx-auto text-lg mb-4">
+    DHBW CAS Scheduler
+  </div>
+  <LectureList />
 </template>
 
 <script lang="ts">

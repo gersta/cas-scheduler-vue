@@ -1,18 +1,32 @@
 <template>
-  <Search :lectures="lectures" @search-update="updateLectures($event)" />
-  <table>
-    <thead>
-      <tr>
-        <th v-for="(header, index) in headers" :key="index">{{ header }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="lecture in viewLectures" :key="lecture.id">
-        <td>{{ lecture.lectureCode }}</td>
-        <td>{{ lecture.name }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <Search
+    :lectures="lectures"
+    :placeholder="'Type to search lectures'"
+    @search-update="updateLectures($event)"
+  />
+
+  <div
+    class="max-w-md mx-2 lg:mx-auto bg-wite rounded-xl shadow-md overflow-hidden"
+    v-for="lecture in viewLectures"
+    :key="lecture.id"
+  >
+    <div class="p-8 text-left">
+      <div>
+        <div class="uppercase tracking-wide font-semibold text-indigo-500">
+          {{ lecture.lectureCode }}
+        </div>
+        <p class="block mt-1 text-lg leading-tight font-medium text-black">{{ lecture.name }}</p>
+      </div>
+      <div class="mt-2">
+        <div>
+          First Block <span class="text-indigo-500">{{ lecture.blocks[0].blockStart }}</span> - <span class="text-indigo-500">{{ lecture.blocks[0].blockEnd }}</span>
+        </div>
+        <div>
+          Second Block <span class="text-indigo-500">{{ lecture.blocks[1].blockStart }}</span> - <span class="text-indigo-500">{{ lecture.blocks[1].blockEnd }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,7 +42,7 @@ interface Lecture {
 
 const LectureList = defineComponent({
   components: {
-    Search
+    Search,
   },
   props: {
     msg: String,
@@ -37,13 +51,13 @@ const LectureList = defineComponent({
     return {
       headers: ["ID", "Name"] as string[],
       lectures: [] as Lecture[],
-      viewLectures: [] as Lecture[]
+      viewLectures: [] as Lecture[],
     };
   },
   methods: {
     updateLectures(lectures: Lecture[]) {
       this.viewLectures = lectures;
-    }
+    },
   },
   mounted() {
     this.lectures = lectures;

@@ -1,10 +1,13 @@
 <template>
-    <input
+    <div class="flex flex-col max-w-md mx-2 lg:mx-auto">
+        <input
+        class="h-9 border rounded-xl shadow-md text-center placeholder-indigo-500"
         type="text"
         v-model="searchValue"
         @input="search()"
-        placeholder="Type to search"
+        :placeholder="placeholder"
     />
+    </div>
 </template>
 
 <script lang="ts">
@@ -18,6 +21,9 @@ interface Lecture {
 
 const Search = defineComponent({
     props: {
+        placeholder: {
+            type: String
+        },
         lectures: {
             type: Array as PropType<Lecture[]>,
             default: () => {
