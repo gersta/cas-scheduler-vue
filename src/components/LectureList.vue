@@ -1,6 +1,6 @@
 <template>
   <Search
-    :lectures="lectures"
+    :items="lectures"
     :placeholder="'Type to search lectures'"
     @search-update="updateLectures($event)"
   />
