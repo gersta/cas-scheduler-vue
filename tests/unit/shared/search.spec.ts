@@ -1,4 +1,4 @@
-import Search from "@/components/Search.vue";
+import Search from "@/components/shared/Search.vue";
 import { mount, shallowMount } from "@vue/test-utils";
 
 describe("Search.vue", () => {

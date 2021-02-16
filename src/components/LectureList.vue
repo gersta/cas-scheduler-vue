@@ -57,18 +57,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="lecture in viewLectures" :key="lecture.id" class="hover:bg-gray-100 border-b">
-          <td class="py-2 px-4">{{ lecture.lectureCode }}</td>
-          <td class="py-2 px-4">{{ lecture.name }}</td>
-          <td>
-            <span class="py-2 px-4">{{ lecture.blocks[0].blockStart }}</span> -
-            <span class="py-2 px-4">{{ lecture.blocks[0].blockEnd }}</span>
-          </td>
-          <td>
-            <span class="py-2 px-4">{{ lecture.blocks[1].blockStart }}</span> -
-            <span class="py-2 px-4">{{ lecture.blocks[1].blockEnd }}</span>
-          </td>
-        </tr>
+        <LectureItem v-for="lecture in viewLectures" :key="lecture.id" :lecture="lecture" />
       </tbody>
     </table>
   </div>
@@ -77,7 +66,8 @@
 <script lang="ts">
 import lectures from "@/assets/lectures.json";
 import { defineComponent } from "vue";
-import Search from "./Search.vue";
+import Search from "./shared/Search.vue";
+import LectureItem from "./lecture-item/LectureItem.vue";
 
 interface Lecture {
   id: number;
@@ -88,9 +78,7 @@ interface Lecture {
 const LectureList = defineComponent({
   components: {
     Search,
-  },
-  props: {
-    msg: String,
+    LectureItem
   },
   data() {
     return {
@@ -114,18 +102,5 @@ export default LectureList;
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
