@@ -1,8 +1,9 @@
 <template>
-  <div class="max-w-md mx-auto text-lg mb-4">
-    DHBW CAS Scheduler
+  <div class="container mx-auto">
+    <div class="text-2xl font-bold text-center">DHBW CAS Scheduler</div>
+
+    <LectureList />
   </div>
-  <LectureList />
 </template>
 
 <script lang="ts">
