@@ -1,5 +1,6 @@
 <template>
   <tr
+    v-if="!isMobile"
     class="hover:bg-gray-100 border-b"
   >
     <td class="py-2 px-4">{{ lecture.lectureCode }}</td>
@@ -13,6 +14,32 @@
       <span class="py-2 px-4">{{ secondBlockEnd }}</span>
     </td>
   </tr>
+
+  <div v-if="isMobile" class="p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black">
+    <div>
+      <div class="text-left uppercase tracking-wide font-semibold text-indigo-500">
+        {{ lecture.lectureCode }}
+      </div>
+      <p class="text-left block mt-1 text-lg leading-tight font-medium text-black">
+        {{ lecture.name }}
+      </p>
+      <hr class="mt-2">
+    </div>
+    <div class="mt-2 text-left">
+      <div>
+        <span>First Lecture Block</span>
+        <div>
+          <span class="text-indigo-500">{{ firstBlockStart }}</span> - <span class="text-indigo-500">{{ firstBlockEnd }}</span>
+        </div>
+      </div>
+      <div class="mt-2">
+        <span>Second Lecture Block</span>
+        <div>
+          <span class="text-indigo-500">{{ secondBlockStart }}</span> - <span class="text-indigo-500">{{ secondBlockEnd }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,7 +53,7 @@ interface Lecture {
 }
 
 const LectureItem = defineComponent({
-  props: ['lecture'],
+  props: ['lecture', 'isMobile'],
   computed: {
     firstBlockStart: function(): string {
       return asFormattedDate(this.lecture.blocks[0].blockStart);
