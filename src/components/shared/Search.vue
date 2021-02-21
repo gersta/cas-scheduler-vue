@@ -29,7 +29,9 @@ const Search = defineComponent({
   },
   methods: {
     search() {
-      this.$emit("search-update", this.activeItems);
+      setTimeout( () => {
+        this.$emit("search-update", this.activeItems);
+      }, 1000);
     },
     getPropertyString(item: any): string {
       let propertyString = "";

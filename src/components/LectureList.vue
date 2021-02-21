@@ -1,39 +1,42 @@
 <template>
   <div>
-    <Search
-    class="mt-2 placeholder-indigo-500 text-center border rounded-lg border-indigo-500"
-    :items="lectures"
-    :placeholder="'Type to search lectures'"
-    @search-update="updateLectures($event)"
-  />
+    <div class="xl:h-auto sticky top-0 py-4 mt-2 mx-2 bg-white border-b border-gray-200 h-20">
+      <Search
+      class="w-full h-full lg:w-max placeholder-indigo-500 text-center border rounded-lg border-indigo-500"
+      :items="lectures"
+      :placeholder="'Type to search lectures'"
+      @search-update="updateLectures($event)"
+    />
+    </div>
 
-  <table
-    class="my-4 mx-4 w-full hidden xl:table text-left "
-  >
-    <thead>
-      <tr class="text-indigo-500 font-bolt uppercase border-b border-black">
-        <th class="py-2 px-4 bg-gray-50">Code</th>
-        <th class="py-2 px-4 bg-gray-50">Name</th>
-        <th class="py-2 px-4 bg-gray-50">First Block</th>
-        <th class="py-2 px-4 bg-gray-50">Second Block</th>
-      </tr>
-    </thead>
-    <tbody>
-      <LectureItem v-for="lecture in viewLectures" :key="lecture.id" :lecture="lecture" :isMobile="false" />
-    </tbody>
-  </table>
+    <table class="my-4 mx-4 w-full hidden xl:table text-left ">
+      <thead>
+        <tr class="text-indigo-500 font-bolt uppercase border-b border-black">
+          <th class="py-2 px-4 bg-gray-50">Code</th>
+          <th class="py-2 px-4 bg-gray-50">Name</th>
+          <th class="py-2 px-4 bg-gray-50">First Block</th>
+          <th class="py-2 px-4 bg-gray-50">Second Block</th>
+        </tr>
+      </thead>
+      <tbody>
+        <LectureItem
+          v-for="lecture in viewLectures"
+          :key="lecture.id"
+          :lecture="lecture"
+          :isMobile="false"
+        />
+      </tbody>
+    </table>
 
-  <div
-    class="xl:hidden mb-2"
-  >
-    <hr class="mt-4 w-4/5 mx-auto">
+    <div class="xl:hidden mb-2">
 
-    <LectureItem
-    v-for="lecture in viewLectures"
-    :key="lecture.id"
-    :lecture="lecture"
-    :isMobile="true" />
-  </div>
+      <LectureItem
+        v-for="lecture in viewLectures"
+        :key="lecture.id"
+        :lecture="lecture"
+        :isMobile="true"
+      />
+    </div>
   </div>
 </template>
 
@@ -52,7 +55,7 @@ interface Lecture {
 const LectureList = defineComponent({
   components: {
     Search,
-    LectureItem
+    LectureItem,
   },
   data() {
     return {
@@ -75,6 +78,4 @@ export default LectureList;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>
