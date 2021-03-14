@@ -1,21 +1,23 @@
 <template>
   <div>
-    <div class="xl:h-auto sticky top-0 py-4 mt-2 mx-2 bg-white border-b border-gray-200 h-20">
+    <div class="xl:h-auto sticky top-0 py-4 mt-2 mx-2 bg-white h-20">
       <Search
-      class="w-full h-full lg:w-max placeholder-indigo-500 text-center border rounded-lg border-indigo-500"
-      :items="lectures"
-      :placeholder="'Type to search lectures'"
-      @search-update="updateLectures($event)"
-    />
+        class="w-full h-full lg:w-max placeholder-indigo-500 text-center border rounded-lg border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+        :items="lectures"
+        :placeholder="'Type to search lectures'"
+        @search-update="updateLectures($event)"
+      />
     </div>
 
     <table class="my-4 mx-4 w-full hidden xl:table text-left ">
       <thead>
-        <tr class="text-indigo-500 font-bolt uppercase border-b border-black">
-          <th class="py-2 px-4 bg-gray-50">Code</th>
-          <th class="py-2 px-4 bg-gray-50">Name</th>
-          <th class="py-2 px-4 bg-gray-50">First Block</th>
-          <th class="py-2 px-4 bg-gray-50">Second Block</th>
+        <tr
+          class="cas-text-color-standard font-bolt uppercase border-b border-black"
+        >
+          <th class="py-2 px-4">Code</th>
+          <th class="py-2 px-4">Name</th>
+          <th class="py-2 px-4">First Block</th>
+          <th class="py-2 px-4">Second Block</th>
         </tr>
       </thead>
       <tbody>
@@ -24,19 +26,30 @@
           :key="lecture.id"
           :lecture="lecture"
           :isMobile="false"
+          @click="toggleModal(lecture)"
         />
       </tbody>
     </table>
 
     <div class="xl:hidden mb-2">
-
       <LectureItem
         v-for="lecture in viewLectures"
         :key="lecture.id"
         :lecture="lecture"
         :isMobile="true"
+        @click="toggleModal(lecture)"
       />
     </div>
+
+    <Modal
+      @closeModal="toggleModal({})"
+      v-if="modal.isVisible"
+      :lecture="modal.lecture"
+      :headline="modal.lecture.name"
+      :description="
+        'Download the ics files for the lecture to save in your personal calendar.'
+      "
+    />
   </div>
 </template>
 
@@ -45,28 +58,32 @@ import lectures from "@/assets/lectures.json";
 import { defineComponent } from "vue";
 import Search from "./shared/Search.vue";
 import LectureItem from "./lecture-item/LectureItem.vue";
-
-interface Lecture {
-  id: number;
-  lectureCode: string;
-  name: string;
-}
+import Modal from "@/components/shared/Modal.vue";
 
 const LectureList = defineComponent({
   components: {
     Search,
     LectureItem,
+    Modal,
   },
   data() {
     return {
-      headers: ["ID", "Name"] as string[],
-      lectures: [] as Lecture[],
-      viewLectures: [] as Lecture[],
+      lectures: [] as any[],
+      viewLectures: [] as any[],
+      modal: {
+        isVisible: false,
+        lecture: {} as any,
+      },
     };
   },
   methods: {
-    updateLectures(lectures: Lecture[]) {
+    updateLectures(lectures: any[]) {
       this.viewLectures = lectures;
+    },
+    toggleModal(lecture: any) {
+      this.modal.isVisible = !this.modal.isVisible;
+
+      this.modal.lecture = lecture;
     },
   },
   mounted() {

@@ -1,5 +1,6 @@
 <template>
   <tr
+    @click="$emit('click')"
     v-if="!isMobile"
     class="hover:bg-gray-100 border-b"
   >
@@ -15,27 +16,37 @@
     </td>
   </tr>
 
-  <div v-if="isMobile" class="p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black">
+  <div
+    @click="$emit('click')"
+    v-if="isMobile"
+    class="p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black"
+  >
     <div>
-      <div class="text-left uppercase tracking-wide font-semibold text-indigo-500">
+      <div
+        class="text-left uppercase tracking-wide font-semibold cas-text-color-standard"
+      >
         {{ lecture.lectureCode }}
       </div>
-      <p class="text-left block mt-1 text-lg leading-tight font-medium text-black">
+      <p
+        class="text-left block mt-1 text-lg leading-tight font-medium text-black"
+      >
         {{ lecture.name }}
       </p>
-      <hr class="mt-2">
+      <hr class="mt-2" />
     </div>
     <div class="mt-2 text-left">
       <div>
         <span>First Lecture Block</span>
         <div>
-          <span class="text-indigo-500">{{ firstBlockStart }}</span> - <span class="text-indigo-500">{{ firstBlockEnd }}</span>
+          <span class="cas-text-color-standard">{{ firstBlockStart }}</span> -
+          <span class="cas-text-color-standard">{{ firstBlockEnd }}</span>
         </div>
       </div>
       <div class="mt-2">
         <span>Second Lecture Block</span>
         <div>
-          <span class="text-indigo-500">{{ secondBlockStart }}</span> - <span class="text-indigo-500">{{ secondBlockEnd }}</span>
+          <span class="cas-text-color-standard">{{ secondBlockStart }}</span> -
+          <span class="cas-text-color-standard">{{ secondBlockEnd }}</span>
         </div>
       </div>
     </div>
@@ -44,16 +55,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { asFormattedDate } from "../shared/DateFormat"
+import { asFormattedDate } from "../shared/DateFormat";
 
-interface Lecture {
-  id: number;
-  lectureCode: string;
-  name: string;
-}
 
 const LectureItem = defineComponent({
-  props: ['lecture', 'isMobile'],
+  props: ["lecture", "isMobile"],
   computed: {
     firstBlockStart: function(): string {
       return asFormattedDate(this.lecture.blocks[0].blockStart);
@@ -66,8 +72,9 @@ const LectureItem = defineComponent({
     },
     secondBlockEnd: function(): string {
       return asFormattedDate(this.lecture.blocks[1].blockEnd);
-    }
-  }
+    },
+  },
+  emits: ["click"],
 });
 export default LectureItem;
 </script>

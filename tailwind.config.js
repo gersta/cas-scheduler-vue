@@ -8,7 +8,11 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['active'],
+      transitionDelay: ['hover']
+    },
   },
-  plugins: [],
+  plugins: [
+  ],
 }

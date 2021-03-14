@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.cas-text-color-standard {
+    @apply text-indigo-500;
+}
+
+.cas-border-color-standard {
+    @apply border-gray-100;
+}
+
+.cas-border-color-indigo {
+    @apply border-indigo-500;
+}
+
+.cas-text-small {
+    @apply text-sm;
+    @apply cas-text-color-standard;
+}
+
+.cas-button-hover-indigo {
+    @apply border hover:border-indigo-500;
+}
