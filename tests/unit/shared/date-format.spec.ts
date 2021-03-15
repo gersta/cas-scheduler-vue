@@ -24,4 +24,12 @@ describe('DateFormat', () => {
 
         expect(result).toBe("01.02.2020");
     })
+
+    it('should return "Invalid Date" from invalid date', () => {
+        let invalidDate = "ABC";
+
+        const result = asFormattedDate(invalidDate);
+
+        expect(result).toBe("Invalid date");
+    })
 });

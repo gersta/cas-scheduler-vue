@@ -1,8 +1,8 @@
 <template>
   <tr
+    class="lecture-item hover:bg-gray-100 border-b"
     @click="$emit('click')"
     v-if="!isMobile"
-    class="hover:bg-gray-100 border-b"
   >
     <td class="py-2 px-4">{{ lecture.lectureCode }}</td>
     <td class="py-2 px-4">{{ lecture.name }}</td>
@@ -17,9 +17,9 @@
   </tr>
 
   <div
+    class="lecture-item p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black"
     @click="$emit('click')"
     v-if="isMobile"
-    class="p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black"
   >
     <div>
       <div
@@ -56,7 +56,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { asFormattedDate } from "../shared/DateFormat";
-
 
 const LectureItem = defineComponent({
   props: ["lecture", "isMobile"],
