@@ -6,8 +6,12 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "yarn run cypress run --headless",
+    "test:e2e": "yarn run cypress run",
     "test": "yarn test:unit && yarn test:e2e",
+    "ci": "yarn test:unit && yarn build && yarn ci:cy-run",
+    "ci:cy-run": "start-server-and-test ci:start-server 8080 cy:run",
+    "ci:start-server": "yarn http-server dist/",
+    "cy:run": "cypress run",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -17,6 +21,7 @@
     "http-server": "^0.12.3",
     "moment": "^2.29.1",
     "postcss": "^7",
+    "start-server-and-test": "^1.12.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
