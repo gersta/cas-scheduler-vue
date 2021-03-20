@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div id="app" class="container mx-auto">
     <div class="text-2xl font-bold text-center">DHBW CAS Scheduler</div>
     <LectureList />
   </div>

@@ -1,5 +1,6 @@
 <template>
   <tr
+    data-view
     class="lecture-item hover:bg-gray-100 border-b"
     @click="$emit('click')"
     v-if="!isMobile"
@@ -17,6 +18,7 @@
   </tr>
 
   <div
+    data-view
     class="lecture-item p-8 mt-4 mx-2 bg-white rounded-xl overflow-hidden border border-black"
     @click="$emit('click')"
     v-if="isMobile"

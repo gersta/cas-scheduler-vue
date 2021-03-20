@@ -1,5 +1,6 @@
 <template>
   <input
+      data-view
       type="text"
       v-model="searchValue"
       @input="search()"

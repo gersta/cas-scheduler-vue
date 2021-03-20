@@ -1,5 +1,6 @@
 <template>
   <div
+    data-view
     class="z-50 fixed inset-0 flex justify-center items-center bg-black h-100 overflow-hidden bg-opacity-50"
   >
     <div
