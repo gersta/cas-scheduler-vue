@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container mx-auto">
     <div class="text-2xl font-bold text-center">DHBW CAS Scheduler</div>
+    <div class="text-sm text-center mx-3">Click any of the lectures below to download the .ics files of the respective lecture blocks for your calender</div>
     <LectureList />
   </div>
 </template>
