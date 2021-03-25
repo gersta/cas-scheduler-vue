@@ -7,11 +7,11 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "yarn run cypress run",
-    "test": "yarn test:unit && yarn test:e2e",
+    "test": "yarn test:unit && yarn build && start-server-and-test start-server 8080 test:e2e",
     "ci": "yarn test:unit && yarn build && yarn ci:cy-run",
-    "ci:cy-run": "start-server-and-test ci:start-server 8080 cy:run",
-    "ci:start-server": "yarn http-server dist/",
+    "ci:cy-run": "start-server-and-test start-server 8080 cy:run",
     "cy:run": "cypress run",
+    "start-server": "yarn http-server dist/",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
