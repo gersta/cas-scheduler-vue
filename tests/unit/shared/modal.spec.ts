@@ -19,7 +19,7 @@ describe('Modal', () => {
 
             const result = modal.vm.getDownloadFilename(0);
 
-            expect(result).toBe('Example_Filename.ics');
+            expect(result).toBe('/ics/Example_Filename.ics');
         });
     
         it('should return empty filename for invalid lecture block', () => {

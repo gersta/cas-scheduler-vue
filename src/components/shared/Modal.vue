@@ -25,7 +25,7 @@
           <a
             :href="getDownloadFilename(index)"
             download
-            class="flex m-4 rounded-lg border cursor-pointer cas-button-hover-indigo transition ease-in-out"
+            class="block-download flex m-4 rounded-lg border cursor-pointer cas-button-hover-indigo transition ease-in-out"
           >
             <div
               class="w-1/3 rounded-lg rounded-r-none bg-gray-100 flex justify-center items-center"
@@ -88,7 +88,7 @@ const Modal = defineComponent({
         if ( blocks[blockNumber] ) {
           const block = this.lecture.blocks[blockNumber];
 
-          return block.filename? block.filename : "";
+          return block.filename? "/ics/" + block.filename : "";
         }
       }
 
