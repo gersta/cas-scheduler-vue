@@ -2,6 +2,36 @@
 
 const path = require('path')
 
+describe('Initial load', () => {
+
+    beforeEach( () => {
+        cy.visit('/') // leverage baseUrl from cypress.json
+    });
+
+    it('should display the lecture code', () => {
+        cy.get('.lecture-item')
+            .first()
+            .get('.cas-lecture-code')
+            .first()
+            .should('have.text', 'T3M10101')
+    })
+
+    it('should display the lecture name', () => {
+        cy.get('.lecture-item')
+            .first()
+            .get('.cas-lecture-name')
+            .first()
+            .should('have.text', 'Angewandte Ingenieurmathematik')
+    })
+
+    it('should display the lecture blocks', () => {
+        cy.get('.lecture-item')
+            .first()
+            .get('.cas-lecture-block')
+            .should('exist')
+    })
+})
+
 describe('Search', () => {
     beforeEach( () => {
         cy.visit('/') // leverage baseUrl from cypress.json

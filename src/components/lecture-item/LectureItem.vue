@@ -6,7 +6,7 @@
     v-if="!isMobile"
   >
     <td class="py-2 px-4">{{ lecture.lectureCode }}</td>
-    <td class="py-2 px-4">{{ lecture.name }}</td>
+    <td class="py-2 px-4">{{ lecture.lectureName }}</td>
     <td>
       <span class="py-2 px-4">{{ firstBlockStart }}</span> -
       <span class="py-2 px-4">{{ firstBlockEnd }}</span>
@@ -25,26 +25,26 @@
   >
     <div>
       <div
-        class="text-left uppercase tracking-wide font-semibold cas-text-color-standard"
+        class="cas-lecture-code text-left uppercase tracking-wide font-semibold cas-text-color-standard"
       >
         {{ lecture.lectureCode }}
       </div>
       <p
-        class="text-left block mt-1 text-lg leading-tight font-medium text-black"
+        class="cas-lecture-name text-left block mt-1 text-lg leading-tight font-medium text-black"
       >
-        {{ lecture.name }}
+        {{ lecture.lectureName }}
       </p>
       <hr class="mt-2" />
     </div>
     <div class="mt-2 text-left">
-      <div>
+      <div class="cas-lecture-block">
         <span>First Lecture Block</span>
         <div>
           <span class="cas-text-color-standard">{{ firstBlockStart }}</span> -
           <span class="cas-text-color-standard">{{ firstBlockEnd }}</span>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-2 cas-lecture-block">
         <span>Second Lecture Block</span>
         <div>
           <span class="cas-text-color-standard">{{ secondBlockStart }}</span> -

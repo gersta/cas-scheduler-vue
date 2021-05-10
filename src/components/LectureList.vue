@@ -46,7 +46,7 @@
       @closeModal="toggleModal({})"
       v-if="modal.isVisible"
       :lecture="modal.lecture"
-      :headline="modal.lecture.name"
+      :headline="modal.lecture.lectureName"
       :description="
         'Download the ics files for the lecture to save in your personal calendar.'
       "
@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import lectures from "@/assets/lectures.json";
+import lectures from "@/assets/lecture-modules.json";
 import { defineComponent } from "vue";
 import Search from "./shared/Search.vue";
 import LectureItem from "./lecture-item/LectureItem.vue";
