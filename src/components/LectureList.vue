@@ -16,6 +16,7 @@
         >
           <th class="py-2 px-4">Code</th>
           <th class="py-2 px-4">Name</th>
+          <th class="py-2 px-4">English Name</th>
           <th class="py-2 px-4">First Block</th>
           <th class="py-2 px-4">Second Block</th>
         </tr>
@@ -47,6 +48,7 @@
       v-if="modal.isVisible"
       :lecture="modal.lecture"
       :headline="modal.lecture.lectureName"
+      :subline="modal.lecture.lectureNameEnglish"
       :description="
         'Download the ics files for the lecture to save in your personal calendar.'
       "

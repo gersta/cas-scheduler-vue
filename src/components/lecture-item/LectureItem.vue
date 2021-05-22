@@ -5,8 +5,9 @@
     @click="$emit('click')"
     v-if="!isMobile"
   >
-    <td class="py-2 px-4">{{ lecture.lectureCode }}</td>
-    <td class="py-2 px-4">{{ lecture.lectureName }}</td>
+    <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
+    <td class="cas-lecture-name py-2 px-4">{{ lecture.lectureName }}</td>
+    <td class="cas-lecture-name-eng py-2 px-4">{{ lecture.lectureNameEnglish }}</td>
     <td>
       <span class="py-2 px-4">{{ firstBlockStart }}</span> -
       <span class="py-2 px-4">{{ firstBlockEnd }}</span>
@@ -27,12 +28,12 @@
       <div
         class="cas-lecture-code text-left uppercase tracking-wide font-semibold cas-text-color-standard"
       >
-        {{ lecture.lectureCode }}
+        {{ lecture.lectureCode }}: {{ lecture.lectureName }}
       </div>
       <p
-        class="cas-lecture-name text-left block mt-1 text-lg leading-tight font-medium text-black"
+        class="cas-lecture-name-eng text-left block mt-1 text-sm leading-tight font-medium text-black"
       >
-        {{ lecture.lectureName }}
+        {{ lecture.lectureNameEnglish }}
       </p>
       <hr class="mt-2" />
     </div>

@@ -75,7 +75,7 @@ describe('Modal', () => {
         })
     });
 
-    describe('Formatted Date', () => {
+    describe('Formatted Block Date', () => {
 
         it('should return block start for start type', () => {
             let lecture = {
@@ -131,7 +131,7 @@ describe('Modal', () => {
             expect(result).toBe("08.10.2020")
         })
 
-        it('should return fallback charecter for missing block', () => {
+        it('should return fallback character for missing block', () => {
             let lecture = {
                 blocks: [
                 ]
@@ -144,6 +144,36 @@ describe('Modal', () => {
             const result = modal.vm.getFormattedDate(0, "end");
 
             expect(result).toBe("")
+        })
+    })
+
+    describe('Formatted updated-on date', () => {        
+
+
+        it('should return lecture updatedOn date', () => {
+            let lecture = {
+                updatedOn: '2021-05-22'
+            };
+
+            const modal = shallowMount(Modal, {
+                props: { lecture }
+            });
+
+            const result = modal.vm.updatedOnFormatted;
+
+            expect(result).toBe("22.05.2021");
+        })
+
+        xit('should return fallback character for missing lecture updatedOn date', () => {
+            let lecture = {};
+
+            const modal = shallowMount(Modal, {
+                props: { lecture }
+            });
+
+            const result = modal.vm.updatedOnFormatted;
+
+            expect(result).toEqual("");
         })
     })
 });
