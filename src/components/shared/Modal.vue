@@ -7,8 +7,15 @@
       class="relative bg-white rounded-lg cas-border-color-standard w-9/12 xl:w-1/3 h-5/6 overflow-y-scroll"
     >
       <div class="m-4 text-left">
-        <div class="font-bold cas-text-color-standard text-lg">
-          {{ headline }}
+        <div class="flex flex-row font-bold cas-text-color-standard text-lg">
+          <div class="flex-auto">{{ headline }}</div>
+
+          <div
+            class="modal-close-button flex-auto text-right"
+            @click="$emit('closeModal')"
+          >
+            <button>X</button>
+          </div>
         </div>
         <div class="font-semibold text-black text-sm">
           {{ subline }}
@@ -118,12 +125,16 @@
 
           <div>
             <h5 class="font-semibold">Duration</h5>
-            <span class="cas-lecture-exam-duration">{{ lecture.examDuration }}</span>
+            <span class="cas-lecture-exam-duration">{{
+              lecture.examDuration
+            }}</span>
           </div>
 
           <div class="mb-2">
             <h5 class="font-semibold">Marked</h5>
-            <span class="cas-lecture-exam-marking">{{ lecture.examMarking }}</span>
+            <span class="cas-lecture-exam-marking">{{
+              lecture.examMarking
+            }}</span>
           </div>
 
           <hr />
@@ -134,33 +145,34 @@
 
           <div>
             <h5 class="font-semibold">Total workload</h5>
-            <span class="cas-lecture-workload-total">{{ lecture.totalWorkload }}</span>
+            <span class="cas-lecture-workload-total">{{
+              lecture.totalWorkload
+            }}</span>
           </div>
 
           <div>
             <h5 class="font-semibold">Present workload</h5>
-            <span class="cas-lecture-workload-present">{{ lecture.presentWorkload }}</span>
+            <span class="cas-lecture-workload-present">{{
+              lecture.presentWorkload
+            }}</span>
           </div>
 
           <div class="mb-2">
             <h5 class="font-semibold">Self study workload</h5>
-            <span class="cas-lecture-workload-selfstudy">{{ lecture.selfStudyWorkload }}</span>
+            <span class="cas-lecture-workload-selfstudy">{{
+              lecture.selfStudyWorkload
+            }}</span>
           </div>
 
           <hr />
         </div>
 
         <div class="cas-lecture-updated-on mt-2 text-sm text-gray-500">
-          Updated on: <span class="cas-lecture-updated-on float-right">{{ updatedOnFormatted }}</span>
+          Updated on:
+          <span class="cas-lecture-updated-on float-right">{{
+            updatedOnFormatted
+          }}</span>
         </div>
-      </div>
-
-      <div
-        class="modal-close-button m-4 object-bottom"
-        @click="$emit('closeModal')"
-      >
-        <hr />
-        <button class="mt-2">Close</button>
       </div>
     </div>
   </div>
