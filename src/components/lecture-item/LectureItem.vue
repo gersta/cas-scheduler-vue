@@ -6,15 +6,22 @@
     v-if="!isMobile"
   >
     <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
-    <td class="cas-lecture-name py-2 px-4">{{ lecture.lectureName }}</td>
-    <td class="cas-lecture-name-eng py-2 px-4">{{ lecture.lectureNameEnglish }}</td>
-    <td>
-      <span class="py-2 px-4">{{ firstBlockStart }}</span> -
-      <span class="py-2 px-4">{{ firstBlockEnd }}</span>
+    <td class="py-2 px-4">
+      <div class="cas-lecture-name">{{ lecture.lectureName }}</div>
+      <div class="cas-lecture-name-eng">{{ lecture.lectureNameEnglish }}</div>
     </td>
-    <td>
-      <span class="py-2 px-4">{{ secondBlockStart }}</span> -
-      <span class="py-2 px-4">{{ secondBlockEnd }}</span>
+
+    <td class="py-2">
+      <div class="cas-lecture-first-block-start">{{ firstBlockStart }}</div>
+      <div class="cas-lecture-second-block-start">{{ secondBlockStart }}</div>
+    </td>
+    <td class="py-2">
+      <div class="cas-lecture-first-block-end">{{ firstBlockEnd }}</div>
+      <div class="cas-lecture-second-block-end">{{ secondBlockEnd }}</div>
+    </td>
+    <td class="py-2">
+      <div class="cas-lecture-first-block-location">{{ firstBlockLocation }}</div>
+      <div class="cas-lecture-second-block-location">{{ secondBlockLocation }}</div>
     </td>
   </tr>
 
@@ -26,12 +33,12 @@
   >
     <div>
       <div
-        class="cas-lecture-code text-left uppercase tracking-wide font-semibold cas-text-color-standard"
+        class="text-left uppercase tracking-wide font-semibold cas-text-color-standard"
       >
-        {{ lecture.lectureCode }}: {{ lecture.lectureName }}
+        <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>: <span class="cas-lecture-name">{{ lecture.lectureName }}</span>
       </div>
       <p
-        class="cas-lecture-name-eng text-left block mt-1 text-sm leading-tight font-medium text-black"
+        class="cas-lecture-name-eng text-left mt-1 text-sm leading-tight font-medium text-black"
       >
         {{ lecture.lectureNameEnglish }}
       </p>
@@ -39,17 +46,17 @@
     </div>
     <div class="mt-2 text-left">
       <div class="cas-lecture-block">
-        <span>First Lecture Block</span>
+        <span>First Lecture Block in <span class="cas-lecture-first-block-location">{{ firstBlockLocation }}</span></span>
         <div>
-          <span class="cas-text-color-standard">{{ firstBlockStart }}</span> -
-          <span class="cas-text-color-standard">{{ firstBlockEnd }}</span>
+          <span class="cas-lecture-first-block-start cas-text-color-standard">{{ firstBlockStart }}</span> -
+          <span class="cas-lecture-first-block-end cas-text-color-standard">{{ firstBlockEnd }}</span>
         </div>
       </div>
       <div class="mt-2 cas-lecture-block">
-        <span>Second Lecture Block</span>
+        <span>Second Lecture Block in <span class="cas-lecture-second-block-location">{{ secondBlockLocation }}</span></span>
         <div>
-          <span class="cas-text-color-standard">{{ secondBlockStart }}</span> -
-          <span class="cas-text-color-standard">{{ secondBlockEnd }}</span>
+          <span class="cas-lecture-second-block-start cas-text-color-standard">{{ secondBlockStart }}</span> -
+          <span class="cas-lecture-second-block-end cas-text-color-standard">{{ secondBlockEnd }}</span>
         </div>
       </div>
     </div>
@@ -74,6 +81,12 @@ const LectureItem = defineComponent({
     },
     secondBlockEnd: function(): string {
       return asFormattedDate(this.lecture.blocks[1].blockEnd);
+    },
+    firstBlockLocation: function(): string {
+      return this.lecture.blocks[0].location;
+    },
+    secondBlockLocation: function(): string {
+      return this.lecture.blocks[1].location;
     },
   },
   emits: ["click"],

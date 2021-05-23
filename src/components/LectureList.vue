@@ -11,14 +11,20 @@
 
     <table class="my-4 mx-4 w-full hidden xl:table text-left ">
       <thead>
+        <colgroup></colgroup>
+        <colgroup></colgroup>
+        <colgroup span="3"></colgroup>
         <tr
-          class="cas-text-color-standard font-bolt uppercase border-b border-black"
+          class="cas-text-color-standard font-bolt uppercase"
         >
-          <th class="py-2 px-4">Code</th>
-          <th class="py-2 px-4">Name</th>
-          <th class="py-2 px-4">English Name</th>
-          <th class="py-2 px-4">First Block</th>
-          <th class="py-2 px-4">Second Block</th>
+          <th rowspan="2" class="py-2 px-4">Code</th>
+          <th rowspan="2" class="py-2 px-4">Name</th>
+          <th colspan="3" class="py-2">Blocks</th>
+        </tr>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Location</th>
         </tr>
       </thead>
       <tbody>

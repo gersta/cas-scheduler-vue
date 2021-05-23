@@ -3,40 +3,82 @@
 const path = require("path");
 
 describe("Initial load", () => {
-  before(() => {
-    cy.visit("/"); // leverage baseUrl from cypress.json
-  });
+  const sizes = [768, 1280];
 
-  it("should display the lecture code", () => {
-    cy.get(".lecture-item")
-      .first()
-      .get(".cas-lecture-code")
-      .first()
-      .should("have.text", "T3M10101");
-  });
+  sizes.forEach( (size) => {
+    describe(`screen size ${size}`, () => {
 
-  it("should display the lecture name", () => {
-    cy.get(".lecture-item")
-      .first()
-      .get(".cas-lecture-name")
-      .first()
-      .should("have.text", "Angewandte Ingenieurmathematik");
-  });
+      beforeEach(() => {
+        cy.viewport(size, 1024);
+        cy.visit("/"); // leverage baseUrl from cypress.json
+      })
+    
+      it("should display the lecture code", () => {
+        cy.get(".cas-lecture-code")
+          .filter(":visible")
+          .first()
+          .should("have.text", "T3M10101");
+      });
+    
+      it("should display the lecture name", () => {
+        cy.get(".cas-lecture-name")
+          .filter(":visible")
+          .first()
+          .should("have.text", "Angewandte Ingenieurmathematik");
+      });
+    
+      it("should display the english lecture name", () => {
+        cy.get(".cas-lecture-name-eng")
+          .filter(":visible")
+          .first()
+          .should("have.text", "Applied Engineering Mathematics");
+      });
+    
+      it("should display first block start", () => {
+        cy.get(".cas-lecture-first-block-start")
+          .filter(":visible")
+          .first()
+          .should("have.text", "08.10.2020");
+      });
 
-  it("should display the english lecture name", () => {
-    cy.get(".lecture-item")
-      .first()
-      .get(".cas-lecture-name-eng")
-      .first()
-      .should("have.text", "Applied Engineering Mathematics");
-  });
+      it("should display first block end", () => {
+        cy.get(".cas-lecture-first-block-end")
+          .filter(":visible")
+          .first()
+          .should("have.text", "10.10.2020");
+      });
 
-  it("should display the lecture blocks", () => {
-    cy.get(".lecture-item")
-      .first()
-      .get(".cas-lecture-block")
-      .should("exist");
-  });
+      it("should display first block location", () => {
+        cy.get(".cas-lecture-first-block-location")
+          .filter(":visible")
+          .first()
+          .should("have.text", "HN");
+      });
+
+      it("should display second block start", () => {
+        cy.get(".cas-lecture-second-block-start")
+          .filter(":visible")
+          .first()
+          .should("have.text", "09.11.2020");
+      });
+
+      it("should display second block end", () => {
+        cy.get(".cas-lecture-second-block-end")
+          .filter(":visible")
+          .first()
+          .should("have.text", "11.11.2020");
+      });
+
+      it("should display second block location", () => {
+        cy.get(".cas-lecture-second-block-location")
+          .filter(":visible")
+          .first()
+          .should("have.text", "HN");
+      });
+    })
+  })
+
+  
 });
 
 describe("Lecture details", () => {
@@ -59,69 +101,47 @@ describe("Lecture details", () => {
   });
 
   it("should display the lecture language", () => {
-    modal
-      .get(".cas-lecture-language")
-      .should("have.text", "Deutsch/Englisch");
+    modal.get(".cas-lecture-language").should("have.text", "Deutsch/Englisch");
   });
 
   it("should display the lecture forms", () => {
-    modal
-      .get(".cas-lecture-forms")
-      .should("exist");
+    modal.get(".cas-lecture-forms").should("exist");
   });
 
   it("should display the lecture methods", () => {
-    modal
-      .get(".cas-lecture-methods")
-      .should("exist");
+    modal.get(".cas-lecture-methods").should("exist");
   });
 
   it("should display the lecture exam", () => {
-    modal
-      .get(".cas-lecture-exam")
-      .should("have.text", "Klausur");
+    modal.get(".cas-lecture-exam").should("have.text", "Klausur");
   });
 
   it("should display the lecture exam duration", () => {
-    modal
-      .get(".cas-lecture-exam-duration")
-      .should("have.text", "120");
+    modal.get(".cas-lecture-exam-duration").should("have.text", "120");
   });
 
   it("should display the lecture exam marking", () => {
-    modal
-      .get(".cas-lecture-exam-marking")
-      .should("have.text", "true");
+    modal.get(".cas-lecture-exam-marking").should("have.text", "true");
   });
 
   it("should display the lecture total workload", () => {
-    modal
-      .get(".cas-lecture-workload-total")
-      .should("have.text", "150");
+    modal.get(".cas-lecture-workload-total").should("have.text", "150");
   });
 
   it("should display the lecture present workload", () => {
-    modal
-      .get(".cas-lecture-workload-present")
-      .should("have.text", "50");
+    modal.get(".cas-lecture-workload-present").should("have.text", "50");
   });
 
   it("should display the lecture self-study workload", () => {
-    modal
-      .get(".cas-lecture-workload-selfstudy")
-      .should("have.text", "100");
+    modal.get(".cas-lecture-workload-selfstudy").should("have.text", "100");
   });
 
   it("should display the lecture ects points", () => {
-    modal
-      .get(".cas-lecture-ects")
-      .should("have.text", "5");
+    modal.get(".cas-lecture-ects").should("have.text", "5");
   });
 
   it("should display the lecture update date", () => {
-    modal
-      .get(".cas-lecture-updated-on")
-      .should("have.text", "2020-07-13");
+    modal.get(".cas-lecture-updated-on").should("have.text", "2020-07-13");
   });
 });
 
