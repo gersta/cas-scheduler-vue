@@ -4,7 +4,7 @@
     class="z-50 fixed inset-0 flex justify-center items-center bg-black h-100 bg-opacity-50"
   >
     <div
-      class="relative bg-white rounded-lg cas-border-color-standard w-9/12 xl:w-1/3 h-5/6 overflow-y-scroll"
+      class="relative bg-white rounded-lg cas-border-color-standard w-9/12 xl:w-1/3 max-h-9/10  overflow-y-scroll"
     >
       <div class="m-4 text-left">
         <div class="flex flex-row font-bold cas-text-color-standard text-lg">
@@ -62,114 +62,123 @@
           Lecture details
         </h1>
 
-        <div class="general mt-2">
-          <h4 class="cas-text-color-standard font-semibold">General</h4>
+        <div class="cas-lecture-details-present" v-if="lecture.moduleAvailable">
+          <div class="general mt-2">
+            <h4 class="cas-text-color-standard font-semibold">General</h4>
 
-          <div>
-            <h5 class="font-semibold">Code</h5>
-            <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>
+            <div>
+              <h5 class="font-semibold">Code</h5>
+              <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>
+            </div>
+
+            <div>
+              <h5 class="font-semibold">Owner</h5>
+              <span class="cas-lecture-owner">{{ lecture.owner }}</span>
+            </div>
+
+            <div>
+              <h5 class="font-semibold">Language</h5>
+              <span class="cas-lecture-language">{{ lecture.language }}</span>
+            </div>
+
+            <div class="mb-2">
+              <h5 class="font-semibold">ECTS Points</h5>
+              <span class="cas-lecture-ects">{{ lecture.ectsPoints }}</span>
+            </div>
+
+            <hr />
           </div>
 
-          <div>
-            <h5 class="font-semibold">Owner</h5>
-            <span class="cas-lecture-owner">{{ lecture.owner }}</span>
+          <div class="lecturing mt-2">
+            <h4 class="cas-text-color-standard font-semibold">Lecturing</h4>
+
+            <div>
+              <h5 class="font-semibold">Lecturing forms</h5>
+              <ul class="cas-lecture-forms">
+                <li
+                  v-for="(form, index) in lecture.lecturingForms"
+                  :key="index"
+                >
+                  {{ form }}
+                </li>
+              </ul>
+            </div>
+
+            <div class="mb-2">
+              <h5 class="font-semibold">Lecturing methods</h5>
+              <ul class="cas-lecture-methods">
+                <li
+                  v-for="(method, index) in lecture.lecturingMethods"
+                  :key="index"
+                >
+                  {{ method }}
+                </li>
+              </ul>
+            </div>
+
+            <hr />
           </div>
 
-          <div>
-            <h5 class="font-semibold">Language</h5>
-            <span class="cas-lecture-language">{{ lecture.language }}</span>
-          </div>
+          <div class="exam mt-2">
+            <h4 class="cas-text-color-standard font-semibold">Exam</h4>
 
-          <div class="mb-2">
-            <h5 class="font-semibold">ECTS Points</h5>
-            <span class="cas-lecture-ects">{{ lecture.ectsPoints }}</span>
-          </div>
+            <div>
+              <h5 class="font-semibold">Type of Exam</h5>
+              <span class="cas-lecture-exam">{{ lecture.exam }}</span>
+            </div>
 
-          <hr />
-        </div>
-
-        <div class="lecturing mt-2">
-          <h4 class="cas-text-color-standard font-semibold">Lecturing</h4>
-
-          <div>
-            <h5 class="font-semibold">Lecturing forms</h5>
-            <ul class="cas-lecture-forms">
-              <li v-for="(form, index) in lecture.lecturingForms" :key="index">
-                {{ form }}
-              </li>
-            </ul>
-          </div>
-
-          <div class="mb-2">
-            <h5 class="font-semibold">Lecturing methods</h5>
-            <ul class="cas-lecture-methods">
-              <li
-                v-for="(method, index) in lecture.lecturingMethods"
-                :key="index"
+            <div>
+              <h5 class="font-semibold">Duration</h5>
+              <span class="cas-lecture-exam-duration"
+                >{{ lecture.examDuration }}{{ examDurationUnit }}</span
               >
-                {{ method }}
-              </li>
-            </ul>
+            </div>
+
+            <div class="mb-2">
+              <h5 class="font-semibold">Marked</h5>
+              <span class="cas-lecture-exam-marking">{{
+                lecture.examMarking
+              }}</span>
+            </div>
+
+            <hr />
           </div>
 
-          <hr />
+          <div class="workload mt-2">
+            <h4 class="cas-text-color-standard font-semibold">Workload</h4>
+
+            <div>
+              <h5 class="font-semibold">Total workload</h5>
+              <span class="cas-lecture-workload-total"
+                >{{ lecture.totalWorkload }}h</span
+              >
+            </div>
+
+            <div>
+              <h5 class="font-semibold">Present workload</h5>
+              <span class="cas-lecture-workload-present"
+                >{{ lecture.presentWorkload }}h</span
+              >
+            </div>
+
+            <div class="mb-2">
+              <h5 class="font-semibold">Self study workload</h5>
+              <span class="cas-lecture-workload-selfstudy"
+                >{{ lecture.selfStudyWorkload }}h</span
+              >
+            </div>
+
+            <hr />
+          </div>
+
+          <div class="cas-lecture-updated-on mt-2 text-sm text-gray-500">
+            Updated on:
+            <span class="float-right">{{ updatedOnFormatted }}</span>
+          </div>
         </div>
 
-        <div class="exam mt-2">
-          <h4 class="cas-text-color-standard font-semibold">Exam</h4>
-
-          <div>
-            <h5 class="font-semibold">Type of Exam</h5>
-            <span class="cas-lecture-exam">{{ lecture.exam }}</span>
-          </div>
-
-          <div>
-            <h5 class="font-semibold">Duration</h5>
-            <span class="cas-lecture-exam-duration"
-              >{{ lecture.examDuration }}{{ examDurationUnit }}</span
-            >
-          </div>
-
-          <div class="mb-2">
-            <h5 class="font-semibold">Marked</h5>
-            <span class="cas-lecture-exam-marking">{{
-              lecture.examMarking
-            }}</span>
-          </div>
-
-          <hr />
-        </div>
-
-        <div class="workload mt-2">
-          <h4 class="cas-text-color-standard font-semibold">Workload</h4>
-
-          <div>
-            <h5 class="font-semibold">Total workload</h5>
-            <span class="cas-lecture-workload-total"
-              >{{ lecture.totalWorkload }}h</span
-            >
-          </div>
-
-          <div>
-            <h5 class="font-semibold">Present workload</h5>
-            <span class="cas-lecture-workload-present"
-              >{{ lecture.presentWorkload }}h</span
-            >
-          </div>
-
-          <div class="mb-2">
-            <h5 class="font-semibold">Self study workload</h5>
-            <span class="cas-lecture-workload-selfstudy"
-              >{{ lecture.selfStudyWorkload }}h</span
-            >
-          </div>
-
-          <hr />
-        </div>
-
-        <div class="cas-lecture-updated-on mt-2 text-sm text-gray-500">
-          Updated on:
-          <span class="float-right">{{ updatedOnFormatted }}</span>
+        <div class="cas-lecture-details-not-present" v-else>
+          There is no entry for the lecture {{ lecture.lectureCode }} in the module handbook. Lecture details are not available.
         </div>
       </div>
     </div>

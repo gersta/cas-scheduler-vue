@@ -60,3 +60,22 @@ describe("Lecture details", () => {
       cy.get(".cas-lecture-updated-on").should("contain.text", "13.07.2020");
     });
   });
+
+describe('Missing lecture details', () => {
+
+    it('should display hint message for missing details', () => {
+        cy.visit("/"); // leverage baseUrl from cypress.json
+  
+        cy.get(".lecture-search")
+            .type("T3M32004")
+            .should("have.value", "T3M32004")
+
+        cy.get(".lecture-item")
+          .filter(":visible") // skip elements hidden via v-if
+          .first()
+          .click()
+
+        cy.get(".cas-lecture-details")
+            .should("contain.text", "There is no entry for the lecture T3M32004 in the module handbook. Lecture details are not available.")
+    })
+})
