@@ -125,9 +125,9 @@
 
           <div>
             <h5 class="font-semibold">Duration</h5>
-            <span class="cas-lecture-exam-duration">{{
-              lecture.examDuration
-            }}</span>
+            <span class="cas-lecture-exam-duration"
+              >{{ lecture.examDuration }}{{ examDurationUnit }}</span
+            >
           </div>
 
           <div class="mb-2">
@@ -145,23 +145,23 @@
 
           <div>
             <h5 class="font-semibold">Total workload</h5>
-            <span class="cas-lecture-workload-total">{{
-              lecture.totalWorkload
-            }}</span>
+            <span class="cas-lecture-workload-total"
+              >{{ lecture.totalWorkload }}h</span
+            >
           </div>
 
           <div>
             <h5 class="font-semibold">Present workload</h5>
-            <span class="cas-lecture-workload-present">{{
-              lecture.presentWorkload
-            }}</span>
+            <span class="cas-lecture-workload-present"
+              >{{ lecture.presentWorkload }}h</span
+            >
           </div>
 
           <div class="mb-2">
             <h5 class="font-semibold">Self study workload</h5>
-            <span class="cas-lecture-workload-selfstudy">{{
-              lecture.selfStudyWorkload
-            }}</span>
+            <span class="cas-lecture-workload-selfstudy"
+              >{{ lecture.selfStudyWorkload }}h</span
+            >
           </div>
 
           <hr />
@@ -169,9 +169,7 @@
 
         <div class="cas-lecture-updated-on mt-2 text-sm text-gray-500">
           Updated on:
-          <span class="cas-lecture-updated-on float-right">{{
-            updatedOnFormatted
-          }}</span>
+          <span class="float-right">{{ updatedOnFormatted }}</span>
         </div>
       </div>
     </div>
@@ -188,6 +186,13 @@ const Modal = defineComponent({
   computed: {
     updatedOnFormatted(): any {
       return asFormattedDate(this.lecture?.updatedOn);
+    },
+    examDurationUnit(): string {
+      if (isNaN(Number(this.lecture?.examDuration))) {
+        return "";
+      }
+
+      return "min";
     },
   },
   methods: {
