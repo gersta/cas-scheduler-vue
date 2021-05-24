@@ -176,4 +176,32 @@ describe('Modal', () => {
             expect(result).toEqual("");
         })
     })
+
+    describe('English lecture name', () => {
+        it('should display english lecture name from lecture', () => {
+            let lecture = {};
+            let lectureNameEnglish = "English lecture";
+
+            const modal = shallowMount(Modal, {
+                props: { lecture, lectureNameEnglish }
+            });
+
+            const result = modal.vm.lectureNameEnglishOrNotAvailable;
+
+            expect(result).toEqual("English lecture");
+        })
+
+        it('should display not-available information if english lecture name is not available', () => {
+            let lecture = {};
+            let lectureNameEnglish = null;
+
+            const modal = shallowMount(Modal, {
+                props: { lecture, lectureNameEnglish }
+            });
+
+            const result = modal.vm.lectureNameEnglishOrNotAvailable;
+
+            expect(result).toEqual("English name not available");
+        })
+    })
 });

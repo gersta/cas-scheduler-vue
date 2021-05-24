@@ -67,4 +67,30 @@ describe('LectureItem', () => {
 
         expect(lectureItem.vm.secondBlockEnd).toBe("02.01.2021");
     });
+
+    it('should return english lecture name if present', () => {
+        let lecture = {
+            blocks: [{}, {}],
+            lectureNameEnglish: 'English lecture'
+        }
+
+        let lectureItem = shallowMount(LectureItem, {
+            props: { lecture }
+        });
+
+        expect(lectureItem.vm.lectureNameEnglishOrNotAvailable).toBe("English lecture");
+    })
+
+    it('should return N/A info if english name not present', () => {
+        let lecture = {
+            blocks: [{}, {}],
+            lectureNameEnglish: null
+        }
+
+        let lectureItem = shallowMount(LectureItem, {
+            props: { lecture }
+        });
+
+        expect(lectureItem.vm.lectureNameEnglishOrNotAvailable).toBe("English name not available");
+    })
 });

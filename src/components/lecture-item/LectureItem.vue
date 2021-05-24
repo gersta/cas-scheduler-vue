@@ -8,7 +8,7 @@
     <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
     <td class="py-2 px-4">
       <div class="cas-lecture-name">{{ lecture.lectureName }}</div>
-      <div class="cas-lecture-name-eng">{{ lecture.lectureNameEnglish }}</div>
+      <div class="cas-lecture-name-eng">{{ lectureNameEnglishOrNotAvailable }}</div>
     </td>
 
     <td class="py-2">
@@ -40,7 +40,7 @@
       <p
         class="cas-lecture-name-eng text-left mt-1 text-sm leading-tight font-medium text-black"
       >
-        {{ lecture.lectureNameEnglish }}
+        {{ lectureNameEnglishOrNotAvailable }}
       </p>
       <hr class="mt-2" />
     </div>
@@ -70,6 +70,13 @@ import { asFormattedDate } from "../shared/DateFormat";
 const LectureItem = defineComponent({
   props: ["lecture", "isMobile"],
   computed: {
+    lectureNameEnglishOrNotAvailable: function(): string {
+      if (this.lecture?.lectureNameEnglish) {
+        return this.lecture.lectureNameEnglish;
+      }
+
+      return "English name not available";
+    },
     firstBlockStart: function(): string {
       return asFormattedDate(this.lecture.blocks[0].blockStart);
     },

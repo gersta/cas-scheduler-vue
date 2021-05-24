@@ -53,8 +53,8 @@
       @closeModal="toggleModal({})"
       v-if="modal.isVisible"
       :lecture="modal.lecture"
-      :headline="modal.lecture.lectureName"
-      :subline="modal.lecture.lectureNameEnglish"
+      :lectureName="modal.lecture.lectureName"
+      :lectureNameEnglish="modal.lecture.lectureNameEnglish"
       :description="
         'Download the ics files for the lecture to save in your personal calendar.'
       "

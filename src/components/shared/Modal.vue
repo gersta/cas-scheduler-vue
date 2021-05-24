@@ -8,7 +8,7 @@
     >
       <div class="m-4 text-left">
         <div class="flex flex-row font-bold cas-text-color-standard text-lg">
-          <div class="flex-auto">{{ headline }}</div>
+          <div class="flex-auto">{{ lectureName }}</div>
 
           <div
             class="modal-close-button flex-auto text-right"
@@ -18,9 +18,9 @@
           </div>
         </div>
         <div class="font-semibold text-black text-sm">
-          {{ subline }}
+          {{ lectureNameEnglishOrNotAvailable }}
         </div>
-        <div class="mb-2 text-sm">
+        <div class="my-2 text-sm">
           {{ description }}
         </div>
         <hr />
@@ -190,7 +190,7 @@ import Vue, { defineComponent } from "vue";
 import { asFormattedDate } from "@/components/shared/DateFormat";
 
 const Modal = defineComponent({
-  props: ["headline", "subline", "description", "lecture"],
+  props: ["lectureName", "lectureNameEnglish", "description", "lecture"],
   emits: ["closeModal"],
   computed: {
     updatedOnFormatted(): any {
@@ -203,6 +203,13 @@ const Modal = defineComponent({
 
       return "min";
     },
+    lectureNameEnglishOrNotAvailable(): string {
+      if (this.lectureNameEnglish) {
+        return this.lectureNameEnglish;
+      }
+
+      return "English name not available"
+    }
   },
   methods: {
     getFormattedDate(blockNumber: number, type: string): string {
