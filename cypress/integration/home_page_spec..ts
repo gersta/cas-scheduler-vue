@@ -6,10 +6,12 @@ describe("Initial load", () => {
   const sizes = [768, 1280];
 
   sizes.forEach( (size) => {
-    describe(`screen size ${size}`, () => {
+    describe(`screen size ${size}`, {
+      viewportHeight: 1024,
+      viewportWidth: size
+    }, () => {
 
-      beforeEach(() => {
-        cy.viewport(size, 1024);
+      before(() => {
         cy.visit("/"); // leverage baseUrl from cypress.json
       })
     
