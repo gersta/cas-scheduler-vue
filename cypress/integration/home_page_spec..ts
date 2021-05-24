@@ -159,6 +159,17 @@ describe("Search", () => {
       .type("Angewandte")
       .should("have.value", "Angewandte");
   });
+
+  it("it should only list lectures containing search text", () => {
+    const search = "Angewandte";
+
+    cy.get(".lecture-search")
+      .type(search)
+
+    cy.get(".lecture-item")
+      .filter(":visible")
+      .should("contain.text", search)
+  })
 });
 
 describe("Modal", () => {
