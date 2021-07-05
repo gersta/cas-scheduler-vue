@@ -93,4 +93,44 @@ describe('LectureItem', () => {
 
         expect(lectureItem.vm.lectureNameEnglishOrNotAvailable).toBe("English name not available");
     })
+
+    it('should render single day blocks as start and end on the same day', () => {
+        let lecture = {
+            blocks: [{
+				"blockStart": "2021-01-23",
+				"blockEnd": "2021-01-23",
+				"singleDayBlock": true,
+				"location": "HN",
+				"filename": "W3M10001_start_2021-01-23_1st-Block.ics"
+			}]
+        }
+
+        let lectureItem = shallowMount(LectureItem, {
+            props: { lecture }
+        });
+
+        expect(lectureItem.vm.firstBlockStart).toBe("23.01.2021");
+        expect(lectureItem.vm.firstBlockEnd).toBe("23.01.2021");
+        expect(lectureItem.vm.firstBlockLocation).toBe("HN");
+    })
+
+    it('should set first block information to empty string for single blocks', () => {
+        let lecture = {
+            blocks: [{
+				"blockStart": "2021-01-23",
+				"blockEnd": "2021-01-23",
+				"singleDayBlock": true,
+				"location": "HN",
+				"filename": "W3M10001_start_2021-01-23_1st-Block.ics"
+			}]
+        }
+
+        let lectureItem = shallowMount(LectureItem, {
+            props: { lecture }
+        });
+
+        expect(lectureItem.vm.secondBlockStart).toBe("");
+        expect(lectureItem.vm.secondBlockEnd).toBe("");
+        expect(lectureItem.vm.secondBlockLocation).toBe("");
+    })
 });

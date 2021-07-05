@@ -13,15 +13,15 @@
 
     <td class="py-2">
       <div class="cas-lecture-first-block-start">{{ firstBlockStart }}</div>
-      <div class="cas-lecture-second-block-start">{{ secondBlockStart }}</div>
+      <div v-if="this.lecture.blocks[1]" class="cas-lecture-second-block-start">{{ secondBlockStart }}</div>
     </td>
     <td class="py-2">
       <div class="cas-lecture-first-block-end">{{ firstBlockEnd }}</div>
-      <div class="cas-lecture-second-block-end">{{ secondBlockEnd }}</div>
+      <div v-if="this.lecture.blocks[1]" class="cas-lecture-second-block-end">{{ secondBlockEnd }}</div>
     </td>
     <td class="py-2">
       <div class="cas-lecture-first-block-location">{{ firstBlockLocation }}</div>
-      <div class="cas-lecture-second-block-location">{{ secondBlockLocation }}</div>
+      <div v-if="this.lecture.blocks[1]" class="cas-lecture-second-block-location">{{ secondBlockLocation }}</div>
     </td>
   </tr>
 
@@ -52,7 +52,7 @@
           <span class="cas-lecture-first-block-end cas-text-color-standard">{{ firstBlockEnd }}</span>
         </div>
       </div>
-      <div class="mt-2 cas-lecture-block">
+      <div class="mt-2 cas-lecture-block" v-if="this.lecture.blocks[1]">
         <span>Second Lecture Block in <span class="cas-lecture-second-block-location">{{ secondBlockLocation }}</span></span>
         <div>
           <span class="cas-lecture-second-block-start cas-text-color-standard">{{ secondBlockStart }}</span> -
@@ -81,19 +81,19 @@ const LectureItem = defineComponent({
       return asFormattedDate(this.lecture.blocks[0].blockStart);
     },
     secondBlockStart: function(): string {
-      return asFormattedDate(this.lecture.blocks[1].blockStart);
+      return this.lecture.blocks[1] ? asFormattedDate(this.lecture.blocks[1].blockStart) : "";
     },
     firstBlockEnd: function(): string {
       return asFormattedDate(this.lecture.blocks[0].blockEnd);
     },
     secondBlockEnd: function(): string {
-      return asFormattedDate(this.lecture.blocks[1].blockEnd);
+      return this.lecture.blocks[1] ? asFormattedDate(this.lecture.blocks[1].blockEnd): "";
     },
     firstBlockLocation: function(): string {
       return this.lecture.blocks[0].location;
     },
     secondBlockLocation: function(): string {
-      return this.lecture.blocks[1].location;
+      return this.lecture.blocks[1] ? this.lecture.blocks[1].location: "";
     },
   },
   emits: ["click"],
