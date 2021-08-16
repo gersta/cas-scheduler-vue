@@ -1,8 +1,8 @@
 <template>
   <div data-view>
-    <div class="xl:h-auto sticky top-0 py-4 mt-2 mx-2 bg-white h-20">
+    <div class="sticky top-0 py-4 mt-2 mx-2 bg-white h-24">
       <Search
-        class="lecture-search w-full h-full lg:w-max placeholder-indigo-500 text-center border rounded-lg border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+        class="lecture-search w-full h-full lg:w-2/5 placeholder-indigo-500 text-center border rounded-lg border-indigo-500 focus:ring-1 focus:ring-indigo-500"
         :items="lectures"
         :placeholder="'Type to search lectures'"
         @search-update="updateLectures($event)"
