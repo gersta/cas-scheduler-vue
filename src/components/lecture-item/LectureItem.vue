@@ -7,9 +7,9 @@
   >
     <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
     <td class="py-2 px-4">
-      <div class="cas-lecture-name">{{ lecture.lectureName }}</div>
-      <div class="cas-lecture-name-eng italic">{{ lectureNameEnglishOrNotAvailable }}</div>
-      <ul v-if="lecture.additionalInformation?.length > 0" class="inline-flex">
+      <div class="cas-lecture-name cas-text-color-standard">{{ lecture.lectureName }}</div>
+      <div class="cas-lecture-name-eng">{{ lectureNameEnglishOrNotAvailable }}</div>
+      <ul v-if="lecture.additionalInformation?.length > 0" class="inline-flex text-sm">
         <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
       </ul>
     </td>
@@ -38,10 +38,10 @@
       <div
         class="text-left uppercase tracking-wide font-semibold cas-text-color-standard"
       >
-        <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>: <span class="cas-lecture-name">{{ lecture.lectureName }}</span>
+        <span class="cas-lecture-code cas-text-color-standard">{{ lecture.lectureCode }}</span>: <span class="cas-lecture-name">{{ lecture.lectureName }}</span>
       </div>
       <p
-        class="cas-lecture-name-eng text-left mt-1 text-sm font-medium text-black italic"
+        class="cas-lecture-name-eng text-left mt-1 text-sm font-medium text-black"
       >
         {{ lectureNameEnglishOrNotAvailable }}
       </p>

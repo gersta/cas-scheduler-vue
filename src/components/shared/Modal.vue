@@ -17,7 +17,7 @@
             <button>X</button>
           </div>
         </div>
-        <div class="font-semibold text-black text-sm">
+        <div class="text-black">
           {{ lectureNameEnglishOrNotAvailable }}
         </div>
         <div class="my-2 text-sm">
