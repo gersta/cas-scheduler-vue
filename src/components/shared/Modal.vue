@@ -4,7 +4,7 @@
     class="z-50 fixed inset-0 flex justify-center items-center bg-black h-100 bg-opacity-50"
   >
     <div
-      class="relative bg-white rounded-lg cas-border-color-standard w-9/12 xl:w-1/3 max-h-9/10  overflow-y-scroll"
+      class="relative bg-white rounded-lg cas-border-color-standard w-11/12 xl:w-1/3 max-h-9/10  overflow-y-scroll"
     >
       <div class="m-4 text-left">
         <div class="flex flex-row font-bold cas-text-color-standard text-lg">
@@ -20,6 +20,9 @@
         <div class="text-black">
           {{ lectureNameEnglishOrNotAvailable }}
         </div>
+        <ul v-if="lecture.additionalInformation?.length > 0" class="flex flex-row text-sm">
+          <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
+        </ul>
         <div class="my-2 text-sm">
           {{ description }}
         </div>
@@ -66,24 +69,20 @@
           <div class="general mt-2">
             <h4 class="cas-text-color-standard font-semibold">General</h4>
 
-            <div>
-              <h5 class="font-semibold">Code</h5>
-              <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">Code</div> <div class="cas-lecture-code">{{ lecture.lectureCode }}</div>
             </div>
 
-            <div>
-              <h5 class="font-semibold">Owner</h5>
-              <span class="cas-lecture-owner">{{ lecture.owner }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">Owner</div> <div class="cas-lecture-owner">{{ lecture.owner }}</div>
             </div>
 
-            <div>
-              <h5 class="font-semibold">Language</h5>
-              <span class="cas-lecture-language">{{ lecture.language }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">Language</div> <div class="cas-lecture-language">{{ lecture.language }}</div>
             </div>
 
-            <div class="mb-2">
-              <h5 class="font-semibold">ECTS Points</h5>
-              <span class="cas-lecture-ects">{{ lecture.ectsPoints }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">ECTS Points</div> <div class="cas-lecture-ects">{{ lecture.ectsPoints }}</div>
             </div>
 
             <hr />
@@ -93,26 +92,20 @@
             <h4 class="cas-text-color-standard font-semibold">Lecturing</h4>
 
             <div>
-              <h5 class="font-semibold">Lecturing forms</h5>
-              <ul class="cas-lecture-forms">
-                <li
-                  v-for="(form, index) in lecture.lecturingForms"
-                  :key="index"
-                >
-                  {{ form }}
-                </li>
+              <div class="font-semibold">Lecturing forms</div>
+              <ul class="cas-lecture-forms inline-flex">
+                  <li v-for="(form, index) in lecture.lecturingForms"
+                  :key="index">
+                  {{ index !== 0 ? "," : "" }} {{ form }}</li>
               </ul>
             </div>
 
-            <div class="mb-2">
-              <h5 class="font-semibold">Lecturing methods</h5>
-              <ul class="cas-lecture-methods">
-                <li
-                  v-for="(method, index) in lecture.lecturingMethods"
-                  :key="index"
-                >
-                  {{ method }}
-                </li>
+            <div>
+              <div class="font-semibold">Lecturing methods</div>
+              <ul class="cas-lecture-methods inline-flex">
+                  <li v-for="(method, index) in lecture.lecturingMethods"
+                  :key="index">
+                  {{ index !== 0 ? "," : "" }} {{ method }}</li>
               </ul>
             </div>
 
@@ -122,23 +115,16 @@
           <div class="exam mt-2">
             <h4 class="cas-text-color-standard font-semibold">Exam</h4>
 
-            <div>
-              <h5 class="font-semibold">Type of Exam</h5>
-              <span class="cas-lecture-exam">{{ lecture.exam }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">Type of Exam</div> <div class="cas-lecture-exam">{{ lecture.exam }}</div>
             </div>
 
-            <div>
-              <h5 class="font-semibold">Duration</h5>
-              <span class="cas-lecture-exam-duration"
-                >{{ lecture.examDuration }}{{ examDurationUnit }}</span
-              >
+            <div class="cas-details-container">
+              <div class="font-semibold">Duration</div> <div class="cas-lecture-exam-duration">{{ lecture.examDuration }}{{ examDurationUnit }}</div>
             </div>
 
-            <div class="mb-2">
-              <h5 class="font-semibold">Marked</h5>
-              <span class="cas-lecture-exam-marking">{{
-                lecture.examMarking
-              }}</span>
+            <div class="cas-details-container">
+              <div class="font-semibold">Marked</div> <div class="cas-lecture-exam-marking">{{ lecture.examMarking }}</div>
             </div>
 
             <hr />
@@ -147,25 +133,16 @@
           <div class="workload mt-2">
             <h4 class="cas-text-color-standard font-semibold">Workload</h4>
 
-            <div>
-              <h5 class="font-semibold">Total workload</h5>
-              <span class="cas-lecture-workload-total"
-                >{{ lecture.totalWorkload }}h</span
-              >
+            <div class="cas-details-container">
+              <div class="font-semibold">Total workload</div> <div class="cas-lecture-workload-total">{{ lecture.totalWorkload }}h</div>
             </div>
 
-            <div>
-              <h5 class="font-semibold">Present workload</h5>
-              <span class="cas-lecture-workload-present"
-                >{{ lecture.presentWorkload }}h</span
-              >
+            <div class="cas-details-container">
+              <div class="font-semibold">Present workload</div> <div class="cas-lecture-workload-present">{{ lecture.presentWorkload }}h</div>
             </div>
 
-            <div class="mb-2">
-              <h5 class="font-semibold">Self study workload</h5>
-              <span class="cas-lecture-workload-selfstudy"
-                >{{ lecture.selfStudyWorkload }}h</span
-              >
+            <div class="cas-details-container">
+              <div class="font-semibold">Self study workload</div> <div class="cas-lecture-workload-selfstudy">{{ lecture.selfStudyWorkload }}h</div>
             </div>
 
             <hr />

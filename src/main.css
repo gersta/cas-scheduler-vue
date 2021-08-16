@@ -23,3 +23,7 @@
 .cas-button-hover-indigo {
     @apply border hover:border-indigo-500;
 }
+
+.cas-details-container {
+    @apply flex flex-row flex-wrap justify-between
+}
