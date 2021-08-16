@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="text-black">
-          {{ lectureNameEnglishOrNotAvailable }}
+          {{ lectureNameEnglishOrGermanReplacement }}
         </div>
         <ul v-if="lecture.additionalInformation?.length > 0" class="flex flex-row text-sm">
           <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
@@ -180,12 +180,12 @@ const Modal = defineComponent({
 
       return "min";
     },
-    lectureNameEnglishOrNotAvailable(): string {
+    lectureNameEnglishOrGermanReplacement(): string {
       if (this.lectureNameEnglish) {
         return this.lectureNameEnglish;
       }
 
-      return "English name not available"
+      return this.lecture.lectureName;
     }
   },
   methods: {

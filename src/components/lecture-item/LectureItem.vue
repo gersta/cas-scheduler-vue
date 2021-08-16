@@ -8,7 +8,7 @@
     <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
     <td class="py-2 px-4">
       <div class="cas-lecture-name cas-text-color-standard">{{ lecture.lectureName }}</div>
-      <div class="cas-lecture-name-eng">{{ lectureNameEnglishOrNotAvailable }}</div>
+      <div class="cas-lecture-name-eng">{{ lectureNameEnglishOrGermanReplacement }}</div>
       <ul v-if="lecture.additionalInformation?.length > 0" class="inline-flex text-sm">
         <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
       </ul>
@@ -43,7 +43,7 @@
       <p
         class="cas-lecture-name-eng text-left mt-1 text-sm font-medium text-black"
       >
-        {{ lectureNameEnglishOrNotAvailable }}
+        {{ lectureNameEnglishOrGermanReplacement }}
       </p>
       <ul v-if="lecture.additionalInformation?.length > 0" class="flex flex-row text-sm text-left text-black">
         <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
@@ -76,12 +76,12 @@ import { asFormattedDate } from "../shared/DateFormat";
 const LectureItem = defineComponent({
   props: ["lecture", "isMobile"],
   computed: {
-    lectureNameEnglishOrNotAvailable: function(): string {
+    lectureNameEnglishOrGermanReplacement: function(): string {
       if (this.lecture?.lectureNameEnglish) {
         return this.lecture.lectureNameEnglish;
       }
 
-      return "English name not available";
+      return this.lecture.lectureName;
     },
     firstBlockStart: function(): string {
       return asFormattedDate(this.lecture.blocks[0].blockStart);

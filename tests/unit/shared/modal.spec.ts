@@ -186,22 +186,24 @@ describe('Modal', () => {
                 props: { lecture, lectureNameEnglish }
             });
 
-            const result = modal.vm.lectureNameEnglishOrNotAvailable;
+            const result = modal.vm.lectureNameEnglishOrGermanReplacement;
 
             expect(result).toEqual("English lecture");
         })
 
-        it('should display not-available information if english lecture name is not available', () => {
-            let lecture = {};
+        it('should display standard lecture name if english lecture name is not available', () => {
+            let lecture = {
+                lectureName: "German name"
+            };
             let lectureNameEnglish = null;
 
             const modal = shallowMount(Modal, {
                 props: { lecture, lectureNameEnglish }
             });
 
-            const result = modal.vm.lectureNameEnglishOrNotAvailable;
+            const result = modal.vm.lectureNameEnglishOrGermanReplacement;
 
-            expect(result).toEqual("English name not available");
+            expect(result).toEqual("German name");
         })
     })
 });

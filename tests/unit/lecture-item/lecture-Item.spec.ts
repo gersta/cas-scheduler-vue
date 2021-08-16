@@ -78,12 +78,13 @@ describe('LectureItem', () => {
             props: { lecture }
         });
 
-        expect(lectureItem.vm.lectureNameEnglishOrNotAvailable).toBe("English lecture");
+        expect(lectureItem.vm.lectureNameEnglishOrGermanReplacement).toBe("English lecture");
     })
 
-    it('should return N/A info if english name not present', () => {
+    it('should return standard lecture name if english name not present', () => {
         let lecture = {
             blocks: [{}, {}],
+            lectureName: "German Name",
             lectureNameEnglish: null
         }
 
@@ -91,7 +92,7 @@ describe('LectureItem', () => {
             props: { lecture }
         });
 
-        expect(lectureItem.vm.lectureNameEnglishOrNotAvailable).toBe("English name not available");
+        expect(lectureItem.vm.lectureNameEnglishOrGermanReplacement).toBe("German Name");
     })
 
     it('should render single day blocks as start and end on the same day', () => {
