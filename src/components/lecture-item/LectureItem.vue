@@ -8,7 +8,10 @@
     <td class="cas-lecture-code py-2 px-4">{{ lecture.lectureCode }}</td>
     <td class="py-2 px-4">
       <div class="cas-lecture-name">{{ lecture.lectureName }}</div>
-      <div class="cas-lecture-name-eng">{{ lectureNameEnglishOrNotAvailable }}</div>
+      <div class="cas-lecture-name-eng italic">{{ lectureNameEnglishOrNotAvailable }}</div>
+      <ul v-if="lecture.additionalInformation?.length > 0" class="inline-flex">
+        <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
+      </ul>
     </td>
 
     <td class="py-2">
@@ -38,10 +41,13 @@
         <span class="cas-lecture-code">{{ lecture.lectureCode }}</span>: <span class="cas-lecture-name">{{ lecture.lectureName }}</span>
       </div>
       <p
-        class="cas-lecture-name-eng text-left mt-1 text-sm leading-tight font-medium text-black"
+        class="cas-lecture-name-eng text-left mt-1 text-sm font-medium text-black italic"
       >
         {{ lectureNameEnglishOrNotAvailable }}
       </p>
+      <ul v-if="lecture.additionalInformation?.length > 0" class="flex flex-row text-sm text-left text-black">
+        <li v-for="(add, index) in lecture.additionalInformation" :key="index">{{ index !== 0 ? "," : "" }} {{ add }}</li>
+      </ul>
       <hr class="mt-2" />
     </div>
     <div class="mt-2 text-left">

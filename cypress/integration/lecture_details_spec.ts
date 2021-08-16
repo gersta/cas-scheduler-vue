@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-xdescribe("Lecture details", () => {
+describe("Lecture details", () => {
   before(() => {
     cy.visit("/"); // leverage baseUrl from cypress.json
 
